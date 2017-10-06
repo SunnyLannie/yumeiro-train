@@ -7,14 +7,15 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 // Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryCardDataService }  from './in-memory-data/in-memory-card-data.service';
+import { InMemoryWebApiModule } from '../../in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data/in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { CardsComponent } from './cards/cards.component';
 import { IdolsComponent } from './idols/idols.component';
 
 import { CardService } from './cards/card.service';
+import { EventService } from './events/event.service';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -29,9 +30,12 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryCardDataService),
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
-  providers: [ CardService ],
+  providers: [
+    CardService,
+    EventService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

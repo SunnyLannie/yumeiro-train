@@ -22,7 +22,28 @@ export class EventService {
   }
 
   getEvent(id: number): Promise<Event> {
-    
+  	const url = `${this.eventsUrl}/${id}`;
+  	return this.http.get(url)
+  	           .toPromise()
+  	           .then(response => response.json() as Event)
+  	           .catch(this.handleError);
+  }
+
+  updateEvent(event: Event): Promise<Event> {
+    const url = `${this.eventsUrl}/${event.id}`;
+    return this.http.put(url, JSON.stringify(event), {headers:this.headers})
+               .toPromise()
+               .then(() => event)
+               .catch(this.handleError);
+  }
+
+  createEvent(name: string): Promise<Event> {
+    return this.http.post(this.eventsUrl, JSON.stringify({name:name}),
+    	                    {headers: this.headers})
+                    .toPromise()
+                    .then(response => response.json().data as Event)
+                    .catch(this.handleError);
+
   }
 
   private handleError(error: any): Promise<any> {
