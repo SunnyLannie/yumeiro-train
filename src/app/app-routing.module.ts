@@ -6,6 +6,8 @@ import { IdolsComponent } from './idols/idols.component';
 import { CardsComponent } from './cards/cards.component';
 
 const appRoutes:Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'cards', component: CardsComponent },
   { path: 'idols', component: IdolsComponent },
   { path: '**', component: HomeComponent }
 ]
